@@ -26,25 +26,15 @@ public class AdminDashboardController implements Initializable {
     @FXML
     private Label usernameLabel, groupLabel;
     @FXML
-    private TextField categoryIdField;
+    private TextField categoryIdField, categoryNameField;
     @FXML
-    private TextField categoryNameField;
+    private Label categoryUpdateSuccessful, categoryUpdateFailed;
     @FXML
-    private Label categoryUpdateSuccessful;
-    @FXML
-    private Label categoryUpdateFailed;
-    @FXML
-    private TableColumn categoryIdColumn;
-    @FXML
-    private TableColumn categoryNameColumn;
+    private TableColumn categoryIdColumn, categoryNameColumn;
     @FXML
     private TableView categoriesTableView;
     @FXML
-    private TextField movieIdField;
-    @FXML
-    private TextField movieTitleField;
-    @FXML
-    private TextField imdbRatingField;
+    private TextField movieIdField, movieTitleField, imdbRatingField;
     @FXML
     private ChoiceBox chooseCategory;
     @FXML
@@ -55,9 +45,7 @@ public class AdminDashboardController implements Initializable {
     @FXML
     private TableView movieTableView;
     @FXML
-    private Label movieUpdateFailed;
-    @FXML
-    private Label movieUpdateSuccessful;
+    private Label movieUpdateFailed, movieUpdateSuccessful;
 
 
     ObservableList<Category> list = FXCollections.observableArrayList();
@@ -105,7 +93,6 @@ public class AdminDashboardController implements Initializable {
     @FXML
     public void onCreateCategoryButtonClick() {
         String categoryNameField2 = categoryNameField.getText();
-        String categories = "";
         if (!Validation.isValidTitle(categoryNameField2)) {
             categoryUpdateFailed.setText("Neteisingai įvestas pavadinimas");
         } else {
@@ -130,7 +117,7 @@ public class AdminDashboardController implements Initializable {
     }
 
     @FXML
-    public void onSearchBookButtonClick() {
+    public void onSearchMovieButtonClick() {
         list2.clear();
         String movieTitleField2 = movieTitleField.getText();
 
@@ -156,7 +143,7 @@ public class AdminDashboardController implements Initializable {
     }
 
     @FXML
-    public void onUpdateBookButtonClick() {
+    public void onUpdateMovieButtonClick() {
         String movieIdField2 = movieIdField.getText();
         String movieTitleField2 = movieTitleField.getText();
         String movieDescriptionArea2 = moviedDescriptionArea.getText();
@@ -187,7 +174,7 @@ public class AdminDashboardController implements Initializable {
     }
 
     @FXML
-    public void onCreateBookButtonClick() {
+    public void onCreateMovieButtonClick() {
         String movieTitleField2 = movieTitleField.getText();
         String movieDescriptionArea2 = moviedDescriptionArea.getText();
         String movieRatingField2 = imdbRatingField.getText();
@@ -214,7 +201,7 @@ public class AdminDashboardController implements Initializable {
     }
 
     @FXML
-    public void onDeleteBookButtonClick() {
+    public void onDeleteMovieButtonClick() {
         String movieIdField2 = movieIdField.getText();
         if (!Validation.isValidId(movieIdField2)) {
             movieUpdateFailed.setText("Neteisingai įvestas ID");

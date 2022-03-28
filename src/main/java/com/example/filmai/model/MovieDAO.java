@@ -6,6 +6,65 @@ import java.util.List;
 
 public class MovieDAO {
 
+    public static void update(Movie movie) {
+        String jdbcUrl = "jdbc:mysql://localhost:3306/db";
+        String query = "UPDATE `books` SET `title`= ?,`description`= ?, `rating`= ?,`category`= ? WHERE `id`= ?";
+        try {
+            Connection connection = DriverManager.getConnection(jdbcUrl, "root", "");
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, movie.getTitle());
+            preparedStatement.setString(2, movie.getDescription());
+            preparedStatement.setDouble(3, movie.getRating());
+            preparedStatement.setString(4, movie.getCategory());
+            preparedStatement.setInt(5, movie.getId());
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+            connection.close();
+            System.out.println("Pavyko atnaujinti filmą");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Nepavyko atnaujinti filmo");
+        }
+    }
+
+
+    public static void create(Movie movie) {
+        String jdbcUrl = "jdbc:mysql://localhost:3306/db";
+        String querry = "INSERT INTO `movies`(`title`, `description`, `rating`, `category`) VALUES (?, ?, ?, ?)";
+        try {
+            Connection connection = DriverManager.getConnection(jdbcUrl, "root", "");
+            PreparedStatement preparedStatement = connection.prepareStatement(querry);
+            preparedStatement.setString(1, movie.getTitle());
+            preparedStatement.setString(2, movie.getDescription());
+            preparedStatement.setDouble(3, movie.getRating());
+            preparedStatement.setString(4, movie.getCategory());
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+            connection.close();
+            System.out.println("Pavyko sukurti naują filmą");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            System.out.println("Nepavyko sukurti naujo filmo");
+        }
+    }
+
+    public static void deleteById(int id) {
+        String jdbcUrl = "jdbc:mysql://localhost:3306/db";
+        String query = "DELETE FROM `movies` WHERE `id` = ?";
+
+        try {
+            Connection connection = DriverManager.getConnection(jdbcUrl, "root", "");
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+            connection.close();
+            System.out.println("Pavyko ištrinti filmą");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Filmo ištrinti nepavyko");
+        }
+    }
 
     public static List<Movie> searchByName(String title) {
         String jdbcUrl = "jdbc:mysql://localhost:3306/db";
@@ -31,8 +90,10 @@ public class MovieDAO {
             }
             preparedStatement.close();
             connection.close();
+            System.out.println("Paieška sėkminga");
         } catch (SQLException e) {
             e.printStackTrace();
+            System.out.println("Įvyko klaida atliekant paiešką.");
 
         }
         return list;
@@ -64,64 +125,6 @@ public class MovieDAO {
             return list.get(0);
         }catch (IndexOutOfBoundsException e) {
             return null;
-        }
-    }
-
-    public static void update(Movie movie) {
-        String jdbcUrl = "jdbc:mysql://localhost:3306/db";
-        String query = "UPDATE `books` SET `title`= ?,`description`= ?, `rating`= ?,`category`= ? WHERE `id`= ?";
-        try {
-            Connection connection = DriverManager.getConnection(jdbcUrl, "root", "");
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, movie.getTitle());
-            preparedStatement.setString(2, movie.getDescription());
-            preparedStatement.setDouble(3, movie.getRating());
-            preparedStatement.setString(4, movie.getCategory());
-            preparedStatement.setInt(5, movie.getId());
-            preparedStatement.executeUpdate();
-            preparedStatement.close();
-            connection.close();
-            System.out.println("Pavyko atnaujinti įrašą");
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("Nepavyko atnaujinti įrašo");
-        }
-    }
-
-
-    public static void create(Movie movie) {
-        String jdbcUrl = "jdbc:mysql://localhost:3306/db";
-        String querry = "INSERT INTO `movies`(`title`, `description`, `rating`, `category`) VALUES (?, ?, ?, ?)";
-        try {
-            Connection connection = DriverManager.getConnection(jdbcUrl, "root", "");
-            PreparedStatement preparedStatement = connection.prepareStatement(querry);
-            preparedStatement.setString(1, movie.getTitle());
-            preparedStatement.setString(2, movie.getDescription());
-            preparedStatement.setDouble(3, movie.getRating());
-            preparedStatement.setString(4, movie.getCategory());
-            preparedStatement.executeUpdate();
-            preparedStatement.close();
-            connection.close();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-    }
-
-    public static void deleteById(int id) {
-        String jdbcUrl = "jdbc:mysql://localhost:3306/db";
-        String query = "DELETE FROM `movies` WHERE `id` = ?";
-
-        try {
-            Connection connection = DriverManager.getConnection(jdbcUrl, "root", "");
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, id);
-            preparedStatement.executeUpdate();
-            preparedStatement.close();
-            connection.close();
-            System.out.println("Pavyko ištrinti įrašą");
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("Įrašo ištrinti nepavyko");
         }
     }
 }

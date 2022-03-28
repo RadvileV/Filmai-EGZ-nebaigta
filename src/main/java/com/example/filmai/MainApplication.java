@@ -7,10 +7,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-    /*
-    Repozitorijos sukūrimas: 1)Sukurti githube, nusikopijuoti linką 2)Gitbash desktope 3)git clone linkas 4)Nusikopijuoti .git failą i projekto folderį
-    ,ištrinti folderį iš desktopo 5)Projekto folderyje gitbash 6)git add . 7)git commit -m "žinutė" 8)git push
-    */
 
 public class MainApplication extends Application {
     @Override
