@@ -26,10 +26,9 @@ import java.util.ResourceBundle;
 
 public class UserDashboardController implements Initializable {
     @FXML
-    private Label usernameLabel, groupLabel, bookSearchFailed, bookSearchSuccessful, findMovieIdFailed, findMovieIdSuccessful;
+    private Label usernameLabel, groupLabel, movieSearchFailed, movieSearchSuccessful, findMovieIdFailed, findMovieIdSuccessful;
     @FXML
-    private TableColumn movieIdColumn, movieTitleColumn, movieRatingColumn,
-            movieCategoryColumn, movieDescriptionColumn;
+    private TableColumn movieIdColumn, movieTitleColumn, movieCategoryColumn, movieDescriptionColumn;
     @FXML
     private TableView moviesTableView;
     @FXML
@@ -55,43 +54,25 @@ public class UserDashboardController implements Initializable {
         List<Movie> movieList = MovieDAO.searchByName(movieTitleField2);
 
         for (Movie movie : movieList) {
-            list.add(new Movie(movie.getId(), movie.getTitle(), movie.getCategory(), movie.getDescription());
+            list.add(new Movie(movie.getId(), movie.getTitle(), movie.getCategory(), movie.getDescription()));
             movieIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
             movieTitleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
             movieCategoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
             movieDescriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
             moviesTableView.setItems(list);
-
-
         }
         if (movieList.isEmpty()) {
-            bookSearchSuccessful.setText("");
-            bookSearchFailed.setText("Nepavyko atlikti paieškos");
+            movieSearchSuccessful.setText("");
+            movieSearchFailed.setText("Nepavyko atlikti paieškos");
         } else {
-            bookSearchFailed.setText("");
-            bookSearchSuccessful.setText("Pavyko atlikti paiešką.");
+            movieSearchFailed.setText("");
+            movieSearchSuccessful.setText("Pavyko atlikti paiešką.");
         }
     }
 
-    @FXML
-    public void onAddFavouriteButtonClick() {
-        String bookIdField2 = movieIdField.getText();
-
-        if (!Validation.isValidId(bookIdField2)) {
-            findMovieIdSuccessful.setText("");
-            findMovieIdFailed.setText("Neteisingai įvestas ID");
-        } else {
-            int bookIdField3 = Integer.parseInt(movieIdField.getText());
-
-            Favourite favourite = new Favourite(bookIdField3);
-            FavouriteDAO.create(favourite);
-            findMovieIdFailed.setText("");
-            findMovieIdSuccessful.setText("Knyga pridėta prie mėgstamiausių sąrašo");
-        }
-    }
 
     @FXML
-    public void onMovieViewButtonClick() {
+    public void onMovieViewInfoButtonClick(ActionEvent event) throws IOException {
         list.clear();
         String movieIdField2 = movieIdField.getText();
         if (!Validation.isValidId(movieIdField2)) {
@@ -100,7 +81,7 @@ public class UserDashboardController implements Initializable {
         } else {
             int movieIdField3 = Integer.parseInt(movieIdField.getText());
             Movie movie = MovieDAO.searchById(movieIdField3);
-            MovieViewController.oneMovieTableView.setItems();
+            goToMovieView(event);
         }
     }
 

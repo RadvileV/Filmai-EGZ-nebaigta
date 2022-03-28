@@ -17,7 +17,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class RegisterController {
-    //username, password, email, isAdminCheckBox
     @FXML
     private Label registrationStatus;
     @FXML
@@ -30,7 +29,6 @@ public class RegisterController {
     private CheckBox isAdminCheckBox;
 
 
-    //Nepamiršti per fxml code priskirti šitų veiksmų
     @FXML
     public void onRegisterButtonClick (ActionEvent event) throws IOException {
         String username2 = username.getText();

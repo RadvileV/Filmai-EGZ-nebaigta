@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1100.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.filmai.controller.UserDashboardController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="1100.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.filmai.controller.UserDashboardController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
@@ -51,23 +51,22 @@
                      </font>
                   </Label>
                   <TextField fx:id="movieTitleField" layoutX="44.0" layoutY="54.0" prefHeight="34.0" prefWidth="269.0" promptText="Filmo pavadinimas" />
-                  <Label fx:id="bookSearchFailed" layoutX="47.0" layoutY="88.0" prefHeight="27.0" prefWidth="262.0" textFill="RED" />
-                  <Label fx:id="bookSearchSuccessful" layoutX="47.0" layoutY="88.0" prefHeight="27.0" prefWidth="262.0" textFill="#1bc53d" />
+                  <Label fx:id="movieSearchFailed" layoutX="47.0" layoutY="88.0" prefHeight="27.0" prefWidth="262.0" textFill="RED" />
+                  <Label fx:id="movieSearchSuccessful" layoutX="47.0" layoutY="88.0" prefHeight="27.0" prefWidth="262.0" textFill="#1bc53d" />
                   <TextField fx:id="movieIdField" layoutX="41.0" layoutY="179.0" prefHeight="34.0" prefWidth="269.0" promptText="Filmo ID" />
                   <Button fx:id="searchBookButton" layoutX="125.0" layoutY="115.0" mnemonicParsing="false" onAction="#onSearchBookButtonClick" prefHeight="42.0" prefWidth="100.0" text="Ieškoti" />
-                  <Button fx:id="reserveBookButton" layoutX="58.0" layoutY="244.0" mnemonicParsing="false" onAction="#onReserveButtonClick" prefHeight="42.0" prefWidth="100.0" text="Rezervuoti knygą" textAlignment="CENTER" wrapText="true" />
                   <Separator layoutX="1.0" layoutY="-2.0" prefHeight="12.0" prefWidth="1100.0" />
-                  <Separator layoutX="338.0" layoutY="4.0" orientation="VERTICAL" prefHeight="556.0" prefWidth="6.0" />
+                  <Separator layoutX="338.0" layoutY="4.0" orientation="VERTICAL" prefHeight="359.0" prefWidth="4.0" />
                   <Label fx:id="findMovieIdFailed" layoutX="44.0" layoutY="213.0" prefHeight="27.0" prefWidth="262.0" textFill="RED" />
                   <Label fx:id="findMovieIdSuccessful" layoutX="44.0" layoutY="213.0" prefHeight="27.0" prefWidth="262.0" textFill="#1bc53d" />
-                  <Button fx:id="addFavourite" layoutX="193.0" layoutY="244.0" mnemonicParsing="false" onAction="#onAddFavouriteButtonClick" prefHeight="42.0" prefWidth="100.0" text="Pridėti prie mėgstamiausių" textAlignment="CENTER" wrapText="true" />
+                  <Button fx:id="movieViewInfo" layoutX="126.0" layoutY="240.0" mnemonicParsing="false" onAction="#onMovieViewInfoButtonClick" prefHeight="42.0" prefWidth="100.0" text="Žiūrėti daugiau informacijos" textAlignment="CENTER" wrapText="true" />
                   <Label layoutX="159.0" layoutY="373.0" />
                </children></Pane>
          </left>
          <center>
             <Pane prefHeight="515.0" prefWidth="645.0" BorderPane.alignment="CENTER">
                <children>
-                  <TableView fx:id="moviesTableView" layoutX="-1.0" layoutY="42.0" prefHeight="236.0" prefWidth="746.0">
+                  <TableView fx:id="moviesTableView" layoutX="-12.0" layoutY="42.0" prefHeight="267.0" prefWidth="757.0">
                     <columns>
                       <TableColumn fx:id="movieIdColumn" prefWidth="53.19998091459274" text="ID" />
                       <TableColumn fx:id="movieTitleColumn" prefWidth="153.7999610900879" text="Filmo pavadinimas" />
