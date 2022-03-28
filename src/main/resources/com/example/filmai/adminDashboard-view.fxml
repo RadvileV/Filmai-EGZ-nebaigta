@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1100.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.filmai.controller.AdminDashboardController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <BorderPane prefHeight="800.0" prefWidth="1100.0">
+         <top>
+            <Pane prefHeight="90.0" prefWidth="1100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="groupLabel" alignment="CENTER" layoutX="152.0" layoutY="54.0" prefHeight="28.0" prefWidth="151.0" styleClass="labelBackground" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Italic" size="14.0" />
+                     </font></Label>
+                  <Label layoutX="493.0" layoutY="18.0" text="Filmai">
+                     <font>
+                        <Font name="Cambria" size="36.0" />
+                     </font></Label>
+                  <Button fx:id="logOutButton" layoutX="990.0" layoutY="20.0" mnemonicParsing="false" onAction="#onLogOutButtonClick" prefHeight="23.0" prefWidth="84.0" text="Atsijungti">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Button>
+                  <Label layoutX="14.0" layoutY="15.0" text="Prisijungimo vardas:">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
+                  <Label layoutX="96.0" layoutY="58.0" text="Grupė:">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
+                  <Label fx:id="usernameLabel" alignment="CENTER" layoutX="152.0" layoutY="11.0" prefHeight="28.0" prefWidth="152.0" styleClass="labelBackground" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Italic" size="12.0" />
+                     </font></Label>
+               </children></Pane>
+         </top>
+         <left>
+            <Pane prefHeight="474.0" prefWidth="355.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label layoutX="124.0" layoutY="280.0" text="Redaguoti filmą:">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="112.0" layoutY="14.0" text="Redaguoti kategoriją:">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="categoryIdField" layoutX="44.0" layoutY="43.0" prefHeight="34.0" prefWidth="266.0" promptText="Kategorijos ID" />
+                  <Button fx:id="searchCategoryButton" layoutX="62.0" layoutY="160.0" mnemonicParsing="false" onAction="#onSearchCategoryButtonClick" prefHeight="34.0" prefWidth="100.0" text="Ieškoti" />
+                  <Button fx:id="updateCategoryButton" layoutX="192.0" layoutY="160.0" mnemonicParsing="false" onAction="#onUpdateCategoryButtonClick" prefHeight="34.0" prefWidth="100.0" text="Redaguoti" />
+                  <Button fx:id="createCategoryButton" layoutX="62.0" layoutY="204.0" mnemonicParsing="false" onAction="#onCreateCategoryButtonClick" prefHeight="34.0" prefWidth="100.0" text="Sukurti" />
+                  <Button fx:id="deleteCategoryButton" layoutX="192.0" layoutY="204.0" mnemonicParsing="false" onAction="#onDeleteCategoryButtonClick" prefHeight="34.0" prefWidth="100.0" text="Pašalinti" />
+                  <TextField fx:id="categoryNameField" layoutX="44.0" layoutY="91.0" prefHeight="34.0" prefWidth="266.0" promptText="Kategorijos pavadinimas" />
+                  <TextField fx:id="movieTitleField" layoutX="43.0" layoutY="357.0" prefHeight="34.0" prefWidth="269.0" promptText="Filmo pavadinimas" />
+                  <TextField fx:id="imdbRatingField" layoutX="42.0" layoutY="404.0" prefHeight="34.0" prefWidth="270.0" promptText="IMDB reitingas" />
+                  <Label fx:id="categoryUpdateFailed" layoutX="48.0" layoutY="125.0" prefHeight="27.0" prefWidth="262.0" textFill="RED" />
+                  <Label fx:id="categoryUpdateSuccessful" layoutX="46.0" layoutY="125.0" prefHeight="27.0" prefWidth="262.0" textFill="#1bc53d" />
+                  <ChoiceBox fx:id="chooseCategory" layoutX="183.0" layoutY="447.0" prefHeight="34.0" prefWidth="128.0" />
+                  <Label layoutX="46.0" layoutY="456.0" text="Pasirinkite kategoriją:">
+                     <font>
+                        <Font name="Calibri" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="movieIdField" layoutX="43.0" layoutY="308.0" prefHeight="34.0" prefWidth="269.0" promptText="Filmo ID" />
+                  <TextArea fx:id="moviedDescriptionArea" layoutX="44.0" layoutY="501.0" prefHeight="75.0" prefWidth="268.0" promptText="Filmo aprašymas" wrapText="true" />
+                  <Button fx:id="searchBookButton" layoutX="58.0" layoutY="603.0" mnemonicParsing="false" onAction="#onSearchBookButtonClick" prefHeight="34.0" prefWidth="100.0" text="Ieškoti" />
+                  <Button fx:id="updateBookButton" layoutX="193.0" layoutY="603.0" mnemonicParsing="false" onAction="#onUpdateBookButtonClick" prefHeight="34.0" prefWidth="100.0" text="Redaguoti" />
+                  <Button fx:id="createBookButton" layoutX="58.0" layoutY="648.0" mnemonicParsing="false" onAction="#onCreateBookButtonClick" prefHeight="34.0" prefWidth="100.0" text="Sukurti" />
+                  <Button fx:id="deleteBookButton" layoutX="193.0" layoutY="648.0" mnemonicParsing="false" onAction="#onDeleteBookButtonClick" prefHeight="34.0" prefWidth="100.0" text="Pašalinti" />
+                  <Label fx:id="movieUpdateFailed" layoutX="47.0" layoutY="576.0" prefHeight="27.0" prefWidth="262.0" textFill="RED" />
+                  <Label fx:id="movieUpdateSuccessful" layoutX="46.0" layoutY="576.0" prefHeight="27.0" prefWidth="262.0" textFill="#1bc53d" />
+                  <Separator layoutX="1.0" layoutY="-2.0" prefHeight="12.0" prefWidth="1100.0" />
+                  <Separator layoutX="338.0" layoutY="4.0" orientation="VERTICAL" prefHeight="706.0" prefWidth="9.0" />
+               </children></Pane>
+         </left>
+         <center>
+            <Pane prefHeight="515.0" prefWidth="645.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TableView fx:id="categoriesTableView" layoutX="-1.0" layoutY="32.0" prefHeight="214.0" prefWidth="746.0">
+                    <columns>
+                      <TableColumn fx:id="categoryIdColumn" prefWidth="110.20001524686813" text="ID" />
+                      <TableColumn fx:id="categoryNameColumn" prefWidth="634.6000213623047" text="Kategorijos pavadinimas" />
+                    </columns>
+                  </TableView>
+                  <Label layoutY="4.0" text="Kategorijos:">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TableView fx:id="movieTableView" layoutX="-1.0" layoutY="288.0" prefHeight="390.0" prefWidth="746.0">
+                    <columns>
+                      <TableColumn fx:id="movieIdColumn" prefWidth="53.19998091459274" text="ID" />
+                      <TableColumn fx:id="movieTitleColumn" prefWidth="153.7999610900879" text="Filmo pavadinimas" />
+                        <TableColumn fx:id="movieRatingColumn" prefWidth="67.0" text="Reitingas" />
+                        <TableColumn fx:id="movieCategoryColumn" prefWidth="143.0" text="Kategorija" />
+                        <TableColumn fx:id="movieDescriptionColumn" prefWidth="327.0" text="Aprašymas" />
+                    </columns>
+                  </TableView>
+                  <Label layoutY="263.0" text="Filmai:">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children></Pane>
+         </center></BorderPane>
+   </children>
+</GridPane>
