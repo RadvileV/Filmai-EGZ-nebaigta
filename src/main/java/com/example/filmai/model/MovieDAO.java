@@ -127,5 +127,32 @@ public class MovieDAO {
             return null;
         }
     }
+
+    public static List<Movie> searchByCategory(String category) {
+        String jdbcUrl = "jdbc:mysql://localhost:3306/db";
+        String querry = "SELECT * FROM `movies` WHERE `title` LIKE '%" + category + "%'";
+        ArrayList<Movie> list = new ArrayList<>();
+        try {
+            Connection connection = DriverManager.getConnection(jdbcUrl, "root", "");
+            PreparedStatement preparedStatement = connection.prepareStatement(querry);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                list.add(new Movie(
+                        resultSet.getInt("id"),
+                        resultSet.getString("title"),
+                        resultSet.getString("description"),
+                        resultSet.getDouble("rating"),
+                        resultSet.getString("category")
+                ));
+            }
+            preparedStatement.close();
+            connection.close();
+            System.out.println("Paieška sėkminga");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Įvyko klaida atliekant paiešką.");
+        }
+        return list;
+    }
 }
 

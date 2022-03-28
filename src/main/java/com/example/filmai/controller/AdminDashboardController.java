@@ -38,7 +38,7 @@ public class AdminDashboardController implements Initializable {
     @FXML
     private ChoiceBox chooseCategory;
     @FXML
-    private TextArea moviedDescriptionArea;
+    private TextArea movieDescriptionArea;
     @FXML
     private TableColumn movieIdColumn, movieTitleColumn, movieRatingColumn,
             movieCategoryColumn, movieDescriptionColumn;
@@ -146,7 +146,7 @@ public class AdminDashboardController implements Initializable {
     public void onUpdateMovieButtonClick() {
         String movieIdField2 = movieIdField.getText();
         String movieTitleField2 = movieTitleField.getText();
-        String movieDescriptionArea2 = moviedDescriptionArea.getText();
+        String movieDescriptionArea2 = movieDescriptionArea.getText();
         String movieRatingField2 = imdbRatingField.getText();
 
         String category = "";
@@ -176,7 +176,7 @@ public class AdminDashboardController implements Initializable {
     @FXML
     public void onCreateMovieButtonClick() {
         String movieTitleField2 = movieTitleField.getText();
-        String movieDescriptionArea2 = moviedDescriptionArea.getText();
+        String movieDescriptionArea2 = movieDescriptionArea.getText();
         String movieRatingField2 = imdbRatingField.getText();
 
         String category = "";

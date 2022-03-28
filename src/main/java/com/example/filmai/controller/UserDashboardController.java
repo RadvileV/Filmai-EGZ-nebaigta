@@ -26,13 +26,13 @@ import java.util.ResourceBundle;
 
 public class UserDashboardController implements Initializable {
     @FXML
-    private Label usernameLabel, groupLabel, movieSearchFailed, movieSearchSuccessful, findMovieIdFailed, findMovieIdSuccessful;
+    private Label usernameLabel, groupLabel, movieSearchFailed, movieSearchSuccessful, findCategoryFailed, findCategorySuccessful;
     @FXML
     private TableColumn movieIdColumn, movieTitleColumn, movieCategoryColumn, movieDescriptionColumn;
     @FXML
     private TableView moviesTableView;
     @FXML
-    private TextField movieTitleField, movieIdField;
+    private TextField movieTitleField, movieIdField, categoryNameField;
 
     ObservableList<Movie> list = FXCollections.observableArrayList();
 
@@ -47,7 +47,7 @@ public class UserDashboardController implements Initializable {
     }
 
     @FXML
-    public void onSearchBookButtonClick() {
+    public void onSearchMovieButtonClick() {
         list.clear();
         String movieTitleField2 = movieTitleField.getText();
 
@@ -70,14 +70,36 @@ public class UserDashboardController implements Initializable {
         }
     }
 
+    public void onSearchByCategoryButtonClick() {
+        list.clear();
+        String categoryNameField2 = categoryNameField.getText();
+
+        List<Movie> movieList = MovieDAO.searchByCategory(categoryNameField2);
+        for (Movie movie : movieList) {
+            list.add(new Movie(movie.getId(), movie.getTitle(), movie.getCategory(), movie.getDescription()));
+            movieIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+            movieTitleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+            movieCategoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
+            movieDescriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
+            moviesTableView.setItems(list);
+        }
+        if (movieList.isEmpty()) {
+            findCategorySuccessful.setText("");
+            findCategoryFailed.setText("Nepavyko atlikti paieškos");
+        } else {
+            findCategoryFailed.setText("");
+            findCategorySuccessful.setText("Pavyko atlikti paiešką.");
+        }
+    }
+
 
     @FXML
     public void onMovieViewInfoButtonClick(ActionEvent event) throws IOException {
         list.clear();
         String movieIdField2 = movieIdField.getText();
         if (!Validation.isValidId(movieIdField2)) {
-            findMovieIdSuccessful.setText("");
-            findMovieIdFailed.setText("Neteisingai įvestas ID");
+            findCategorySuccessful.setText("");
+            findCategoryFailed.setText("Neteisingai įvestas ID");
         } else {
             int movieIdField3 = Integer.parseInt(movieIdField.getText());
             Movie movie = MovieDAO.searchById(movieIdField3);
